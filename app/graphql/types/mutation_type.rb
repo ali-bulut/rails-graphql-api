@@ -3,7 +3,15 @@ module Types
 
     # we moved method and definition to mutations/create_author.rb file and called it from here.
     field :create_author, Types::AuthorType, mutation: Mutations::CreateAuthor
+    field :update_author, GraphQL::Types::Boolean, mutation: Mutations::UpdateAuthor
 
+    # update_author's output will be;
+    # {
+    #   "data": {
+    #     "updateAuthor": true
+    #   }
+    # }
+    # Because we choose Boolean for return type.
 
     # # instead of Types::AuthorType, we may use only AuthorType also.
     # field :create_author, Types::AuthorType, null: true, description: "Create an author" do
