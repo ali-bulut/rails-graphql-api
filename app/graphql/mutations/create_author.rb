@@ -9,4 +9,31 @@ class Mutations::CreateAuthor < GraphQL::Schema::Mutation
   def resolve(first_name:, last_name:, yob:, is_alive:)
     Author.create(first_name: first_name, last_name: last_name, yob: yob, is_alive: is_alive)
   end
+
+  # Query Variables
+
+  # INPUT
+
+  # Query Part
+  # mutation createAuthor($firstName: String, $lastName: String, $yob: Int, $is_alive: Boolean) {
+  #   createAuthor(firstName: $firstName, lastName: $lastName, yob: $yob, is_alive: $is_alive) {
+  #     id
+  #     fullName
+  #   }
+  # }
+
+  # Query Variables Part
+  # {"firstName": "Ali5", "lastName": "Bulut5", "yob": 1997, "is_alive": true }
+
+
+  # OUTPUT
+  # {
+  #   "data": {
+  #     "createAuthor": {
+  #       "id": "5",
+  #       "fullName": "Ali5 Bulut5"
+  #     }
+  #   }
+  # }
+
 end
