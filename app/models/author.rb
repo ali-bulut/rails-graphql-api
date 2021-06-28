@@ -7,4 +7,7 @@ class Author < ApplicationRecord
   def publication_years
     (1..rand(10)).to_a.map { 1900 - rand(100) }
   end
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 end

@@ -49,9 +49,48 @@ class Types::AuthorType < Types::BaseObject
   field :coordinates, Types::CoordinatesType, null: true
   # [Int] => means that return type will be array of integers.
   field :publication_years, [Int], null: false
+  field :errors, [Types::ErrorType], null: true
 
   def full_name
     # by using object we are able to reach selected Author object.
     ([object.first_name, object.last_name].compact).join(" ")
   end
+
+  def errors
+    object.errors.map { |e| { field_name: e, messages: object.errors[e] } }
+  end
+
+  # input
+  # mutation createAuthor($author: AuthorInputType!) {
+  #   createAuthor(author: $author) {
+  #     fullName
+  #     errors {
+  #       field_name
+  #       messages
+  #     }
+  #   }
+  # }
+  #
+  # output
+  # {
+  #   "data": {
+  #     "createAuthor": {
+  #       "fullName": "",
+  #       "errors": [
+  #         {
+  #           "field_name": "first_name",
+  #           "messages": [
+  #             "can't be blank"
+  #           ]
+  #         },
+  #         {
+  #           "field_name": "last_name",
+  #           "messages": [
+  #             "can't be blank"
+  #           ]
+  #         }
+  #       ]
+  #     }
+  #   }
+  # }
 end
