@@ -19,4 +19,5 @@ class Types::AuthorType < Types::BaseObject
   field :last_name, String, null: true
   field :yob, Int, null: false
   field :is_alive, Boolean, null: true, camelize: false
+  field :full_name, String, null: true
 end
