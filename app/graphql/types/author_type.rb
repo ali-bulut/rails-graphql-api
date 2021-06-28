@@ -20,4 +20,10 @@ class Types::AuthorType < Types::BaseObject
   field :yob, Int, null: false
   field :is_alive, Boolean, null: true, camelize: false
   field :full_name, String, null: true
+
+
+  def full_name
+    # by using object we are able to reach selected Author object.
+    ([object.first_name, object.last_name].compact).join(" ")
+  end
 end
