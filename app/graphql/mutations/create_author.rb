@@ -18,6 +18,11 @@ class Mutations::CreateAuthor < GraphQL::Schema::Mutation
     Author.create(author.to_h)
   end
 
+  # if user is not superadmin then not allow to create new author.
+  def self.authorized?(object, context)
+    context[:current_user]&.is_superadmin?
+  end
+
   # Query Variables
 
   # INPUT
