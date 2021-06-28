@@ -4,6 +4,7 @@ module Types
     # we moved method and definition to mutations/create_author.rb file and called it from here.
     field :create_author, Types::AuthorType, mutation: Mutations::CreateAuthor
     field :update_author, GraphQL::Types::Boolean, mutation: Mutations::UpdateAuthor
+    field :delete_author, GraphQL::Types::Boolean, mutation: Mutations::DeleteAuthor
 
     # update_author's output will be;
     # {
@@ -12,6 +13,18 @@ module Types
     #   }
     # }
     # Because we choose Boolean for return type.
+
+    # delete_author's input;
+    # mutation {
+    #   deleteAuthor(id: 51)
+    # }
+
+    # delete_author's output;
+    # {
+    #   "data": {
+    #     "deleteAuthor": true
+    #   }
+    # }
 
     # # instead of Types::AuthorType, we may use only AuthorType also.
     # field :create_author, Types::AuthorType, null: true, description: "Create an author" do
