@@ -1,3 +1,28 @@
+class Types::AuthorInputType < GraphQL::Schema::InputObject
+  graphql_name "AuthorInputType"
+  description "All the attributes for creating an author"
+
+  argument :first_name, String, required: false
+  argument :last_name, String, required: false
+  argument :yob, Int, required: false
+  argument :is_alive, Boolean, required: false, camelize: false
+
+  # by defining that part, we don't need to write all the fields again and again. Our input will be;
+  #
+  # Query Part
+  # mutation createAuthor($author: AuthorInputType!) {
+  #   createAuthor(author: $author) {
+  #     id
+  #     fullName
+  #   }
+  # }
+  #
+  # Query Variables Part
+  # {
+  #   "author": {"firstName": "Ali5", "lastName": "Bulut5", "yob": 1997, "is_alive": true }
+  # }
+end
+
 class Types::AuthorType < Types::BaseObject
   description "An author"
 
