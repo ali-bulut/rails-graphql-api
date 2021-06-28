@@ -14,7 +14,7 @@ module Types
     end
 
     def test_field(name:)
-      "Hello #{name}"
+      "Hello #{name}! #{context[:time]}"
     end
   end
 end
