@@ -109,6 +109,12 @@ module Types
       context[:current_user]
     end
 
+    field :logout, Boolean, null: false
+
+    def logout
+      Session.find(context[:session_id]).destroy
+    end
+
     # latest version of graphql query
     # {
     #   author(id: 1) {
