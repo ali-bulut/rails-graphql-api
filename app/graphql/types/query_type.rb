@@ -51,5 +51,63 @@ module Types
       # }
       Author.find(id)
     end
+
+    field :authors, [Types::AuthorType], null: false, description: "All authors"
+
+    def authors
+      Author.all
+    end
+    # latest version of graphql query
+    # {
+    #   author(id: 1) {
+    #     firstName
+    #     lastName
+    #     yob
+    #     is_alive
+    #     fullName
+    #     coordinates {
+    #       latitude
+    #       longitude
+    #     }
+    #     publicationYears
+    #   }
+    #
+    #   authors{
+    #     id
+    #     fullName
+    #   }
+    # }
+
+    # latest version of the result
+    # {
+    #   "data": {
+    #     "author": {
+    #       "firstName": "Ali",
+    #       "lastName": "Bulut",
+    #       "yob": 2001,
+    #       "is_alive": true,
+    #       "fullName": "Ali Bulut",
+    #       "coordinates": {
+    #         "latitude": 67,
+    #         "longitude": 7
+    #       },
+    #       "publicationYears": [
+    #         1865,
+    #         1873,
+    #         1827
+    #       ]
+    #     },
+    #     "authors": [
+    #       {
+    #         "id": "1",
+    #         "fullName": "Ali Bulut"
+    #       },
+    #       {
+    #         "id": "2",
+    #         "fullName": "Ali2 Bulut2"
+    #       }
+    #     ]
+    #   }
+    # }
   end
 end

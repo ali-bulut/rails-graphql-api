@@ -21,6 +21,8 @@ class Types::AuthorType < Types::BaseObject
   field :is_alive, Boolean, null: true, camelize: false
   field :full_name, String, null: true
   field :coordinates, Types::CoordinatesType, null: true
+  # [Int] => means that return type will be array of integers.
+  field :publication_years, [Int], null: false
 
   def full_name
     # by using object we are able to reach selected Author object.
