@@ -83,6 +83,32 @@ module Types
       end
     end
 
+
+    field :current_user, Types::UserType, null: true, description: "Currently logged in user"
+
+    # input (before calling that remember to add session key to http headers.)
+    # {
+    #   currentUser{
+    #     id
+    #     email
+    #   }
+    # }
+    #
+    # output
+    #
+    # {
+    #   "data": {
+    #     "currentUser": {
+    #       "id": "1",
+    #       "email": "ali@mail.com"
+    #     }
+    #   }
+    # }
+
+    def current_user
+      context[:current_user]
+    end
+
     # latest version of graphql query
     # {
     #   author(id: 1) {
