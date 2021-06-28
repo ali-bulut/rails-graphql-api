@@ -57,6 +57,32 @@ module Types
     def authors
       Author.all
     end
+
+    field :login, String, null: true, description: "Login a user" do
+      argument :email, String, required: true
+      argument :password, String, required: true
+    end
+
+    # input
+    # {
+    #   login(email:"ali@mail.com", password:"testtest")
+    # }
+    #
+    # output
+    #
+    # {
+    #   "data": {
+    #     "login": "f6db3cf701db264e915b39c30fc647f5bbd40806"
+    #   }
+    # }
+    # "login": null => if it is null, that means credentials are wrong.
+
+    def login(email:, password:)
+      if user = User.find_by(email: email)&.authenticate(password)
+        user.sessions.create.key
+      end
+    end
+
     # latest version of graphql query
     # {
     #   author(id: 1) {
