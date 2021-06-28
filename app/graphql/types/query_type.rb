@@ -42,7 +42,10 @@ module Types
       #       "firstName": "Ali",
       #       "lastName": "Bulut",
       #       "yob": 2001,
-      #       "is_alive": true
+      #       "is_alive": true,
+      #       "id": "1" # if we want to show id in the json data, it's type will be string always.
+      #       there are 5 scalar types in GraphQL;
+      #       - Int, Float, String, Boolean, ID
       #     }
       #   }
       # }
